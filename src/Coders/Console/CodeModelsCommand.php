@@ -2,15 +2,14 @@
 
 namespace Aeugen\Modeler\Coders\Console;
 
+use Aeugen\Modeler\Coders\Model\Factory;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Config\Repository;
-use Aeugen\Modeler\Coders\Model\Factory;
 
 class CodeModelsCommand extends Command
 {
     /**
      * The name and signature of the console command.
-     *
      * @var string
      */
     protected $signature = 'aeugen:modeler
@@ -20,7 +19,6 @@ class CodeModelsCommand extends Command
 
     /**
      * The console command description.
-     *
      * @var string
      */
     protected $description = 'Parse connection schema into models';
@@ -37,9 +35,8 @@ class CodeModelsCommand extends Command
 
     /**
      * Create a new command instance.
-     *
      * @param \Aeugen\Modeler\Coders\Model\Factory $models
-     * @param \Illuminate\Contracts\Config\Repository  $config
+     * @param \Illuminate\Contracts\Config\Repository $config
      */
     public function __construct(Factory $models, Repository $config)
     {
@@ -63,16 +60,12 @@ class CodeModelsCommand extends Command
             $this->info("Making models for table : $table");
             $this->models->on($connection)->create($schema, $table);
             $this->info("Check out your models for $table");
-        }
-
-        // Otherwise map the schema
+        } // Otherwise map the schema
         elseif (!empty($schema)) {
             $this->info("Making models for schema : $schema");
             $this->models->on($connection)->map($schema);
             $this->info("Check out your models for $schema");
-        }
-
-        // Otherwise map the whole database
+        } // Otherwise map the whole database
         else {
             $this->info('Making models for all schemas');
             $this->models->on($connection)->mapAll();
@@ -90,12 +83,11 @@ class CodeModelsCommand extends Command
 
     /**
      * @param $connection
-     *
      * @return string
      */
     protected function getSchema($connection)
     {
-        return $this->option('schema');
+        return $this->option('schema') ?: $this->config->get('database.connections.' . $connection . '.database');
     }
 
     /**
