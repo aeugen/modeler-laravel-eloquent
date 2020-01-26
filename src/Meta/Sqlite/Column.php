@@ -1,10 +1,10 @@
 <?php
 
-namespace Pursehouse\Modeler\Meta\Sqlite;
+namespace Aeugen\Modeler\Meta\Sqlite;
 
 use Illuminate\Support\Fluent;
 
-class Column implements \Pursehouse\Modeler\Meta\Column
+class Column implements \Aeugen\Modeler\Meta\Column
 {
     /**
      * @var \Doctrine\DBAL\Schema\Column

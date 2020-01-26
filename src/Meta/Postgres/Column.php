@@ -1,12 +1,12 @@
 <?php
 
-namespace Pursehouse\Modeler\Meta\Postgres;
+namespace Aeugen\Modeler\Meta\Postgres;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;
 
-class Column implements \Pursehouse\Modeler\Meta\Column
+class Column implements \Aeugen\Modeler\Meta\Column
 {
     /**
      * @var array

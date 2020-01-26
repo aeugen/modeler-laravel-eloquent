@@ -83,8 +83,8 @@ return [
         */
 
         'use' => [
-            // Pursehouse\Modeler\Database\Eloquent\BitBooleans::class,
-            // Pursehouse\Modeler\Database\Eloquent\BlamableBehavior::class,
+            // Aeugen\Modeler\Database\Eloquent\BitBooleans::class,
+            // Aeugen\Modeler\Database\Eloquent\BlamableBehavior::class,
         ],
 
         /*
@@ -392,6 +392,14 @@ return [
         'with_property_constants' => false,
 
         /*
+         | when generating property constants, the constants will be prefixed
+         | if by default we would have "const USER_NAME = 'user_name';"
+         |  then when using a 'property_constants_prefix' with a value of '_'
+         |  the constant would be "const _USER_NAME = 'user_name';"
+         */
+        'property_constants_prefix' => '',
+
+        /*
         |--------------------------------------------------------------------------
         | Disable Pluralization Name
         |--------------------------------------------------------------------------
@@ -432,7 +440,7 @@ return [
     //     'snake_attributes' => false,
     //     'qualified_tables' => true,
     //     'use' => [
-    //         Pursehouse\Modeler\Database\Eloquent\BitBooleans::class,
+    //         Aeugen\Modeler\Database\Eloquent\BitBooleans::class,
     //     ],
     //     'except' => ['migrations'],
     //     'only' => ['users'],

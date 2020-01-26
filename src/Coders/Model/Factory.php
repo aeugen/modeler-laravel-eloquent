@@ -1,13 +1,13 @@
 <?php
 
-namespace Pursehouse\Modeler\Coders\Model;
+namespace Aeugen\Modeler\Coders\Model;
 
+use Aeugen\Modeler\Meta\Blueprint;
+use Aeugen\Modeler\Meta\SchemaManager;
+use Aeugen\Modeler\Support\Classify;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
-use Pursehouse\Modeler\Meta\Blueprint;
-use Pursehouse\Modeler\Meta\SchemaManager;
-use Pursehouse\Modeler\Support\Classify;
 
 class Factory
 {
@@ -17,7 +17,7 @@ class Factory
     private $db;
 
     /**
-     * @var \Pursehouse\Modeler\Meta\SchemaManager
+     * @var \Aeugen\Modeler\Meta\SchemaManager
      */
     protected $schemas = [];
 
@@ -27,22 +27,22 @@ class Factory
     protected $files;
 
     /**
-     * @var \Pursehouse\Modeler\Support\Classify
+     * @var \Aeugen\Modeler\Support\Classify
      */
     protected $class;
 
     /**
-     * @var \Pursehouse\Modeler\Coders\Model\Config
+     * @var \Aeugen\Modeler\Coders\Model\Config
      */
     protected $config;
 
     /**
-     * @var \Pursehouse\Modeler\Coders\Model\ModelManager
+     * @var \Aeugen\Modeler\Coders\Model\ModelManager
      */
     protected $models;
 
     /**
-     * @var \Pursehouse\Modeler\Coders\Model\Mutator[]
+     * @var \Aeugen\Modeler\Coders\Model\Mutator[]
      */
     protected $mutators = [];
 
@@ -53,11 +53,10 @@ class Factory
 
     /**
      * ModelsFactory constructor.
-     *
-     * @param \Illuminate\Database\DatabaseManager    $db
-     * @param \Illuminate\Filesystem\Filesystem       $files
-     * @param \Reliese\Support\Classify               $writer
-     * @param \Pursehouse\Modeler\Coders\Model\Config $config
+     * @param \Illuminate\Database\DatabaseManager $db
+     * @param \Illuminate\Filesystem\Filesystem $files
+     * @param \Reliese\Support\Classify $writer
+     * @param \Aeugen\Modeler\Coders\Model\Config $config
      */
     public function __construct(DatabaseManager $db, Filesystem $files, Classify $writer, Config $config)
     {
@@ -68,7 +67,7 @@ class Factory
     }
 
     /**
-     * @return \Pursehouse\Modeler\Coders\Model\Mutator
+     * @return \Aeugen\Modeler\Coders\Model\Mutator
      */
     public function mutate()
     {
@@ -76,7 +75,7 @@ class Factory
     }
 
     /**
-     * @return \Pursehouse\Modeler\Coders\Model\ModelManager
+     * @return \Aeugen\Modeler\Coders\Model\ModelManager
      */
     protected function models()
     {
@@ -89,9 +88,7 @@ class Factory
 
     /**
      * Select connection to work with.
-     *
      * @param string $connection
-     *
      * @return $this
      */
     public function on($connection = null)
@@ -134,8 +131,7 @@ class Factory
     }
 
     /**
-     * @param \Pursehouse\Modeler\Meta\Blueprint $blueprint
-     *
+     * @param \Aeugen\Modeler\Meta\Blueprint $blueprint
      * @return bool
      */
     protected function shouldNotExclude(Blueprint $blueprint)
@@ -150,8 +146,7 @@ class Factory
     }
 
     /**
-     * @param \Pursehouse\Modeler\Meta\Blueprint $blueprint
-     *
+     * @param \Aeugen\Modeler\Meta\Blueprint $blueprint
      * @return bool
      */
     protected function shouldTakeOnly(Blueprint $blueprint)
@@ -195,9 +190,8 @@ class Factory
     /**
      * @param string $schema
      * @param string $table
-     * @param bool   $withRelations
-     *
-     * @return \Pursehouse\Modeler\Coders\Model\Model
+     * @param bool $withRelations
+     * @return \Aeugen\Modeler\Coders\Model\Model
      */
     public function makeModel($schema, $table, $withRelations = true)
     {
@@ -206,8 +200,7 @@ class Factory
 
     /**
      * @param string $schema
-     *
-     * @return \Pursehouse\Modeler\Meta\Schema
+     * @return \Aeugen\Modeler\Meta\Schema
      */
     public function makeSchema($schema)
     {
@@ -215,11 +208,9 @@ class Factory
     }
 
     /**
-     * @param \Pursehouse\Modeler\Coders\Model\Model $model
-     *
-     * @todo: Delegate workload to SchemaManager and ModelManager
-     *
+     * @param \Aeugen\Modeler\Coders\Model\Model $model
      * @return array
+     * @todo: Delegate workload to SchemaManager and ModelManager
      */
     public function referencing(Model $model)
     {
@@ -242,12 +233,10 @@ class Factory
     }
 
     /**
-     * @param \Pursehouse\Modeler\Coders\Model\Model $model
-     * @param string                                 $name
-     *
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
-     *
+     * @param \Aeugen\Modeler\Coders\Model\Model $model
+     * @param string $name
      * @return string
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     protected function prepareTemplate(Model $model, $name)
     {
@@ -258,9 +247,8 @@ class Factory
     }
 
     /**
-     * @param string                                 $template
-     * @param \Pursehouse\Modeler\Coders\Model\Model $model
-     *
+     * @param string $template
+     * @param \Aeugen\Modeler\Coders\Model\Model $model
      * @return mixed
      */
     protected function fillTemplate($template, Model $model)
@@ -294,10 +282,8 @@ class Factory
 
     /**
      * Returns imports section for model.
-     *
      * @param string $baseNamespace base namespace to avoid importing classes from same namespace
-     * @param array  $usedClasses   Array of used in model classes
-     *
+     * @param array $usedClasses Array of used in model classes
      * @return string
      */
     private function formatUsedClasses($nameSpace, $baseNamespace, $usedClasses)
@@ -337,14 +323,12 @@ class Factory
 
     private function formatUseClassAlias($tableName, $schemaName, $databaseName)
     {
-        return $databaseName.'_'.$schemaName.'_'.$tableName;
+        return $databaseName . '_' . $schemaName . '_' . $tableName;
     }
 
     /**
      * Extract and replace fully-qualified class names from placeholder.
-     *
      * @param string $placeholder Placeholder to extract class names from. Rewrites value to content without FQN
-     *
      * @return array Extracted FQN
      */
     private function extractUsedClasses(&$placeholder)
@@ -366,8 +350,7 @@ class Factory
     }
 
     /**
-     * @param \Pursehouse\Modeler\Coders\Model\Model $model
-     *
+     * @param \Aeugen\Modeler\Coders\Model\Model $model
      * @return string
      */
     protected function properties(Model $model)
@@ -389,15 +372,14 @@ class Factory
             if ($model->hasProperty($name)) {
                 continue;
             }
-            $annotations .= $this->class->annotation('property', $relation->hint()." \$$name");
+            $annotations .= $this->class->annotation('property', $relation->hint() . " \$$name");
         }
 
         return $annotations;
     }
 
     /**
-     * @param \Pursehouse\Modeler\Coders\Model\Model $model
-     *
+     * @param \Aeugen\Modeler\Coders\Model\Model $model
      * @return string
      */
     protected function body(Model $model)
@@ -411,17 +393,20 @@ class Factory
         $excludedConstants = [];
 
         if ($model->hasCustomCreatedAtField()) {
-            $body .= $this->class->constant('CREATED_AT', $model->getCreatedAtField());
+            $body .= $this->class->constant('CREATED_AT', $model->getCreatedAtField(),
+                $model->propertyConstantsPrefix());
             $excludedConstants[] = $model->getCreatedAtField();
         }
 
         if ($model->hasCustomUpdatedAtField()) {
-            $body .= $this->class->constant('UPDATED_AT', $model->getUpdatedAtField());
+            $body .= $this->class->constant('UPDATED_AT', $model->getUpdatedAtField(),
+                $model->propertyConstantsPrefix());
             $excludedConstants[] = $model->getUpdatedAtField();
         }
 
         if ($model->hasCustomDeletedAtField()) {
-            $body .= $this->class->constant('DELETED_AT', $model->getDeletedAtField());
+            $body .= $this->class->constant('DELETED_AT', $model->getDeletedAtField(),
+                $model->propertyConstantsPrefix());
             $excludedConstants[] = $model->getDeletedAtField();
         }
 
@@ -431,7 +416,7 @@ class Factory
             $properties = array_diff($properties, $excludedConstants);
 
             foreach ($properties as $property) {
-                $body .= $this->class->constant(strtoupper($property), $property);
+                $body .= $this->class->constant(strtoupper($property), $property, $model->propertyConstantsPrefix());
             }
         }
 
@@ -510,9 +495,8 @@ class Factory
     }
 
     /**
-     * @param \Pursehouse\Modeler\Coders\Model\Model $model
-     * @param array                                  $custom
-     *
+     * @param \Aeugen\Modeler\Coders\Model\Model $model
+     * @param array $custom
      * @return string
      */
     protected function modelPath(Model $model, $custom = [])
@@ -542,12 +526,11 @@ class Factory
             $this->files->makeDirectory($modelsDirectory, 0755, true);
         }
 
-        return $this->path([$modelsDirectory, $model->getClassName().'.php']);
+        return $this->path([$modelsDirectory, $model->getClassName() . '.php']);
     }
 
     /**
      * @param string $schema
-     *
      * @return string
      */
     public function transformSchemaToNamespace($schema)
@@ -557,7 +540,6 @@ class Factory
 
     /**
      * @param string $schema
-     *
      * @return void
      */
     protected function setSchemaNamespace($schema)
@@ -567,17 +549,15 @@ class Factory
 
     /**
      * @param array $pieces
-     *
      * @return string
      */
     protected function path($pieces)
     {
-        return implode(DIRECTORY_SEPARATOR, (array) $pieces);
+        return implode(DIRECTORY_SEPARATOR, (array)$pieces);
     }
 
     /**
-     * @param \Pursehouse\Modeler\Coders\Model\Model $model
-     *
+     * @param \Aeugen\Modeler\Coders\Model\Model $model
      * @return bool
      */
     public function needsUserFile(Model $model)
@@ -586,8 +566,7 @@ class Factory
     }
 
     /**
-     * @param \Pursehouse\Modeler\Coders\Model\Model $model
-     *
+     * @param \Aeugen\Modeler\Coders\Model\Model $model
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     protected function createUserFile(Model $model)
@@ -606,7 +585,6 @@ class Factory
 
     /**
      * @param Model $model
-     *
      * @return string
      */
     private function formatBaseClasses(Model $model)
@@ -616,17 +594,15 @@ class Factory
 
     /**
      * @param Model $model
-     *
      * @return string
      */
     private function getBaseClassName(Model $model)
     {
-        return 'Base'.$model->getClassName();
+        return 'Base' . $model->getClassName();
     }
 
     /**
-     * @param \Pursehouse\Modeler\Coders\Model\Model $model
-     *
+     * @param \Aeugen\Modeler\Coders\Model\Model $model
      * @return string
      */
     protected function userFileBody(Model $model)
@@ -648,11 +624,10 @@ class Factory
     }
 
     /**
-     * @param \Pursehouse\Modeler\Meta\Blueprint|null $blueprint
-     * @param string                                  $key
-     * @param mixed                                   $default
-     *
-     * @return mixed|\Pursehouse\Modeler\Coders\Model\Config
+     * @param \Aeugen\Modeler\Meta\Blueprint|null $blueprint
+     * @param string $key
+     * @param mixed $default
+     * @return mixed|\Aeugen\Modeler\Coders\Model\Config
      */
     public function config(Blueprint $blueprint = null, $key = null, $default = null)
     {

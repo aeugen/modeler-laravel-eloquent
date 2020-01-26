@@ -1,6 +1,6 @@
 <?php
 
-use Pursehouse\Modeler\Meta\Blueprint;
+use Aeugen\Modeler\Meta\Blueprint;
 
 class BlueprintTest extends TestCase
 {

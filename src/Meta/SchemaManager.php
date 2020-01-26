@@ -1,6 +1,6 @@
 <?php
 
-namespace Pursehouse\Modeler\Meta;
+namespace Aeugen\Modeler\Meta;
 
 use ArrayIterator;
 use Illuminate\Database\ConnectionInterface;
@@ -8,9 +8,9 @@ use Illuminate\Database\MySqlConnection;
 use Illuminate\Database\PostgresConnection;
 use Illuminate\Database\SQLiteConnection;
 use IteratorAggregate;
-use Pursehouse\Modeler\Meta\MySql\Schema as MySqlSchema;
-use Pursehouse\Modeler\Meta\Postgres\Schema as PostgresSchema;
-use Pursehouse\Modeler\Meta\Sqlite\Schema as SqliteSchema;
+use Aeugen\Modeler\Meta\MySql\Schema as MySqlSchema;
+use Aeugen\Modeler\Meta\Postgres\Schema as PostgresSchema;
+use Aeugen\Modeler\Meta\Sqlite\Schema as SqliteSchema;
 use RuntimeException;
 
 class SchemaManager implements IteratorAggregate
@@ -31,7 +31,7 @@ class SchemaManager implements IteratorAggregate
     private $connection;
 
     /**
-     * @var \Pursehouse\Modeler\Meta\Schema[]
+     * @var \Aeugen\Modeler\Meta\Schema[]
      */
     protected $schemas = [];
 
@@ -59,7 +59,7 @@ class SchemaManager implements IteratorAggregate
     /**
      * @param string $schema
      *
-     * @return \Pursehouse\Modeler\Meta\Schema
+     * @return \Aeugen\Modeler\Meta\Schema
      */
     public function make($schema)
     {
@@ -73,7 +73,7 @@ class SchemaManager implements IteratorAggregate
     /**
      * @param string $schema
      *
-     * @return \Pursehouse\Modeler\Meta\Schema
+     * @return \Aeugen\Modeler\Meta\Schema
      */
     protected function makeMapper($schema)
     {

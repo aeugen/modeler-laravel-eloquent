@@ -1,11 +1,11 @@
 <?php
 
-namespace Pursehouse\Modeler\Coders\Model\Relations;
+namespace Aeugen\Modeler\Coders\Model\Relations;
 
 use Illuminate\Support\Fluent;
-use Pursehouse\Modeler\Coders\Model\Model;
-use Pursehouse\Modeler\Coders\Model\Relation;
-use Pursehouse\Modeler\Support\Dumper;
+use Aeugen\Modeler\Coders\Model\Model;
+use Aeugen\Modeler\Coders\Model\Relation;
+use Aeugen\Modeler\Support\Dumper;
 
 abstract class HasOneOrMany implements Relation
 {
@@ -15,12 +15,12 @@ abstract class HasOneOrMany implements Relation
     protected $command;
 
     /**
-     * @var \Pursehouse\Modeler\Coders\Model\Model
+     * @var \Aeugen\Modeler\Coders\Model\Model
      */
     protected $parent;
 
     /**
-     * @var \Pursehouse\Modeler\Coders\Model\Model
+     * @var \Aeugen\Modeler\Coders\Model\Model
      */
     protected $related;
 
@@ -28,8 +28,8 @@ abstract class HasOneOrMany implements Relation
      * HasManyWriter constructor.
      *
      * @param \Illuminate\Support\Fluent             $command
-     * @param \Pursehouse\Modeler\Coders\Model\Model $parent
-     * @param \Pursehouse\Modeler\Coders\Model\Model $related
+     * @param \Aeugen\Modeler\Coders\Model\Model $parent
+     * @param \Aeugen\Modeler\Coders\Model\Model $related
      */
     public function __construct(Fluent $command, Model $parent, Model $related)
     {
@@ -59,14 +59,14 @@ abstract class HasOneOrMany implements Relation
 
         if ($this->needsForeignKey()) {
             $foreignKey = $this->parent->usesPropertyConstants()
-                ? $this->related->getQualifiedUserClassName().'::'.strtoupper($this->foreignKey())
+                ? $this->related->getQualifiedUserClassName().'::'.$this->parent->propertyConstantsPrefix().strtoupper($this->foreignKey())
                 : $this->foreignKey();
             $body .= ', '.Dumper::export($foreignKey);
         }
 
         if ($this->needsLocalKey()) {
             $localKey = $this->related->usesPropertyConstants()
-                ? $this->related->getQualifiedUserClassName().'::'.strtoupper($this->localKey())
+                ? $this->related->getQualifiedUserClassName().'::'.$this->related->propertyConstantsPrefix().strtoupper($this->localKey())
                 : $this->localKey();
             $body .= ', '.Dumper::export($localKey);
         }

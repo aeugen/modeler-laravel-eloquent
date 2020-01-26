@@ -1,6 +1,6 @@
 <?php
 
-namespace Pursehouse\Modeler\Coders\Model;
+namespace Aeugen\Modeler\Coders\Model;
 
 use ArrayIterator;
 use Illuminate\Support\Arr;
@@ -9,19 +9,19 @@ use IteratorAggregate;
 class ModelManager implements IteratorAggregate
 {
     /**
-     * @var \Pursehouse\Modeler\Coders\Model\Factory
+     * @var \Aeugen\Modeler\Coders\Model\Factory
      */
     protected $factory;
 
     /**
-     * @var \Pursehouse\Modeler\Coders\Model\Model[]
+     * @var \Aeugen\Modeler\Coders\Model\Model[]
      */
     protected $models = [];
 
     /**
      * ModelManager constructor.
      *
-     * @param \Pursehouse\Modeler\Coders\Model\Factory $factory
+     * @param \Aeugen\Modeler\Coders\Model\Factory $factory
      */
     public function __construct(Factory $factory)
     {
@@ -31,10 +31,10 @@ class ModelManager implements IteratorAggregate
     /**
      * @param string                                     $schema
      * @param string                                     $table
-     * @param \Pursehouse\Modeler\Coders\Model\Mutator[] $mutators
+     * @param \Aeugen\Modeler\Coders\Model\Mutator[] $mutators
      * @param bool                                       $withRelations
      *
-     * @return \Pursehouse\Modeler\Coders\Model\Model
+     * @return \Aeugen\Modeler\Coders\Model\Model
      */
     public function make($schema, $table, $mutators = [], $withRelations = true)
     {

@@ -1,13 +1,13 @@
 <?php
 
-namespace Pursehouse\Modeler\Coders;
+namespace Aeugen\Modeler\Coders;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
-use Pursehouse\Modeler\Coders\Console\CodeModelsCommand;
-use Pursehouse\Modeler\Coders\Model\Config;
-use Pursehouse\Modeler\Coders\Model\Factory as ModelFactory;
-use Pursehouse\Modeler\Support\Classify;
+use Aeugen\Modeler\Coders\Console\CodeModelsCommand;
+use Aeugen\Modeler\Coders\Model\Config;
+use Aeugen\Modeler\Coders\Model\Factory as ModelFactory;
+use Aeugen\Modeler\Support\Classify;
 
 class CodersServiceProvider extends ServiceProvider
 {
@@ -26,7 +26,7 @@ class CodersServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->publishes([
                 __DIR__.'/../../config/modeler.php' => config_path('modeler.php'),
-            ], 'pursehouse-modeler');
+            ], 'aeugen-modeler');
 
             $this->commands([
                 CodeModelsCommand::class,

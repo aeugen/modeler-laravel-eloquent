@@ -1,8 +1,8 @@
 <?php
 
-namespace Pursehouse\Modeler\Coders\Model;
+namespace Aeugen\Modeler\Coders\Model;
 
-use Pursehouse\Modeler\Meta\Blueprint;
+use Aeugen\Modeler\Meta\Blueprint;
 
 class Mutator
 {
@@ -35,7 +35,7 @@ class Mutator
 
     /**
      * @param string                             $column
-     * @param \Pursehouse\Modeler\Meta\Blueprint $blueprint
+     * @param \Aeugen\Modeler\Meta\Blueprint $blueprint
      *
      * @return mixed
      */
@@ -58,7 +58,7 @@ class Mutator
 
     /**
      * @param string                                 $attribute
-     * @param \Pursehouse\Modeler\Coders\Model\Model $model
+     * @param \Aeugen\Modeler\Coders\Model\Model $model
      *
      * @return string
      */
@@ -81,7 +81,7 @@ class Mutator
 
     /**
      * @param string                                 $attribute
-     * @param \Pursehouse\Modeler\Coders\Model\Model $model
+     * @param \Aeugen\Modeler\Coders\Model\Model $model
      *
      * @return string
      */

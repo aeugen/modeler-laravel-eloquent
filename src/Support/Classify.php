@@ -1,6 +1,6 @@
 <?php
 
-namespace Pursehouse\Modeler\Support;
+namespace Aeugen\Modeler\Support;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -20,15 +20,16 @@ class Classify
 
     /**
      * Constant template.
-     *
      * @param string $name
-     * @param mixed  $value
-     *
+     * @param mixed $value
+     * @param string $namePrefix
      * @return string
      */
-    public function constant($name, $value)
+    public function constant($name, $value, $namePrefix = '')
     {
         $value = Dumper::export($value);
+
+        $name = $namePrefix.$name;
 
         return "\tpublic const $name = $value;\n";
     }

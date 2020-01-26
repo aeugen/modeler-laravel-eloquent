@@ -1,6 +1,6 @@
 <?php
 
-namespace Pursehouse\Modeler\Meta;
+namespace Aeugen\Modeler\Meta;
 
 interface Schema
 {
@@ -15,7 +15,7 @@ interface Schema
     public function schema();
 
     /**
-     * @return \Pursehouse\Modeler\Meta\Blueprint[]
+     * @return \Aeugen\Modeler\Meta\Blueprint[]
      */
     public function tables();
 
@@ -29,12 +29,12 @@ interface Schema
     /**
      * @param string $table
      *
-     * @return \Pursehouse\Modeler\Meta\Blueprint
+     * @return \Aeugen\Modeler\Meta\Blueprint
      */
     public function table($table);
 
     /**
-     * @param \Pursehouse\Modeler\Meta\Blueprint $table
+     * @param \Aeugen\Modeler\Meta\Blueprint $table
      *
      * @return array
      */

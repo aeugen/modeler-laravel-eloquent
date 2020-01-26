@@ -1,6 +1,6 @@
 <?php
 
-namespace Pursehouse\Modeler\Database\Eloquent;
+namespace Aeugen\Modeler\Database\Eloquent;
 
 trait BitBooleans
 {

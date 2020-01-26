@@ -1,15 +1,15 @@
 <?php
 
-namespace Pursehouse\Modeler\Coders\Model\Relations;
+namespace Aeugen\Modeler\Coders\Model\Relations;
 
 use Illuminate\Support\Fluent;
-use Pursehouse\Modeler\Coders\Model\Model;
-use Pursehouse\Modeler\Coders\Model\Relation;
+use Aeugen\Modeler\Coders\Model\Model;
+use Aeugen\Modeler\Coders\Model\Relation;
 
 class HasOneOrManyStrategy implements Relation
 {
     /**
-     * @var \Pursehouse\Modeler\Coders\Model\Relation
+     * @var \Aeugen\Modeler\Coders\Model\Relation
      */
     protected $relation;
 
@@ -17,8 +17,8 @@ class HasOneOrManyStrategy implements Relation
      * HasManyWriter constructor.
      *
      * @param \Illuminate\Support\Fluent             $command
-     * @param \Pursehouse\Modeler\Coders\Model\Model $parent
-     * @param \Pursehouse\Modeler\Coders\Model\Model $related
+     * @param \Aeugen\Modeler\Coders\Model\Model $parent
+     * @param \Aeugen\Modeler\Coders\Model\Model $related
      */
     public function __construct(Fluent $command, Model $parent, Model $related)
     {

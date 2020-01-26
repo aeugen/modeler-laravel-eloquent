@@ -1,6 +1,6 @@
 <?php
 
-namespace Pursehouse\Modeler\Coders\Model\Relations;
+namespace Aeugen\Modeler\Coders\Model\Relations;
 
 use Illuminate\Support\Str;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Pursehouse\Modeler\Coders\Model\Relations;
+namespace Aeugen\Modeler\Coders\Model\Relations;
 
 use Illuminate\Support\Str;
 
@@ -12,12 +12,12 @@ class ReferenceFactory
     protected $related;
 
     /**
-     * @var \Pursehouse\Modeler\Coders\Model\Model
+     * @var \Aeugen\Modeler\Coders\Model\Model
      */
     protected $parent;
 
     /**
-     * @var \Pursehouse\Modeler\Coders\Model\Model[]
+     * @var \Aeugen\Modeler\Coders\Model\Model[]
      */
     protected $references = [];
 
@@ -25,7 +25,7 @@ class ReferenceFactory
      * ReferenceFactory constructor.
      *
      * @param array                                  $related
-     * @param \Pursehouse\Modeler\Coders\Model\Model $parent
+     * @param \Aeugen\Modeler\Coders\Model\Model $parent
      */
     public function __construct($related, $parent)
     {
@@ -34,7 +34,7 @@ class ReferenceFactory
     }
 
     /**
-     * @return \Pursehouse\Modeler\Coders\Model\Relation[]
+     * @return \Aeugen\Modeler\Coders\Model\Relation[]
      */
     public function make()
     {
@@ -100,7 +100,7 @@ class ReferenceFactory
     }
 
     /**
-     * @return \Pursehouse\Modeler\Coders\Model\Model
+     * @return \Aeugen\Modeler\Coders\Model\Model
      */
     protected function getRelatedModel()
     {
@@ -108,7 +108,7 @@ class ReferenceFactory
     }
 
     /**
-     * @return \Pursehouse\Modeler\Meta\Blueprint
+     * @return \Aeugen\Modeler\Meta\Blueprint
      */
     protected function getRelatedBlueprint()
     {

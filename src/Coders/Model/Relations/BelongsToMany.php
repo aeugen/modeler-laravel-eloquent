@@ -1,13 +1,13 @@
 <?php
 
-namespace Pursehouse\Modeler\Coders\Model\Relations;
+namespace Aeugen\Modeler\Coders\Model\Relations;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;
-use Pursehouse\Modeler\Coders\Model\Model;
-use Pursehouse\Modeler\Coders\Model\Relation;
-use Pursehouse\Modeler\Support\Dumper;
+use Aeugen\Modeler\Coders\Model\Model;
+use Aeugen\Modeler\Coders\Model\Relation;
+use Aeugen\Modeler\Support\Dumper;
 
 class BelongsToMany implements Relation
 {
@@ -22,17 +22,17 @@ class BelongsToMany implements Relation
     protected $referenceCommand;
 
     /**
-     * @var \Pursehouse\Modeler\Coders\Model\Model
+     * @var \Aeugen\Modeler\Coders\Model\Model
      */
     protected $parent;
 
     /**
-     * @var \Pursehouse\Modeler\Coders\Model\Model
+     * @var \Aeugen\Modeler\Coders\Model\Model
      */
     protected $pivot;
 
     /**
-     * @var \Pursehouse\Modeler\Coders\Model\Model
+     * @var \Aeugen\Modeler\Coders\Model\Model
      */
     protected $reference;
 
@@ -41,9 +41,9 @@ class BelongsToMany implements Relation
      *
      * @param \Illuminate\Support\Fluent             $parentCommand
      * @param \Illuminate\Support\Fluent             $referenceCommand
-     * @param \Pursehouse\Modeler\Coders\Model\Model $parent
-     * @param \Pursehouse\Modeler\Coders\Model\Model $pivot
-     * @param \Pursehouse\Modeler\Coders\Model\Model $reference
+     * @param \Aeugen\Modeler\Coders\Model\Model $parent
+     * @param \Aeugen\Modeler\Coders\Model\Model $pivot
+     * @param \Aeugen\Modeler\Coders\Model\Model $reference
      */
     public function __construct(
         Fluent $parentCommand,
@@ -102,14 +102,14 @@ class BelongsToMany implements Relation
 
         if ($this->needsForeignKey()) {
             $foreignKey = $this->parent->usesPropertyConstants()
-                ? $this->reference->getQualifiedUserClassName().'::'.strtoupper($this->foreignKey())
+                ? $this->reference->getQualifiedUserClassName().'::'.$this->parent->propertyConstantsPrefix().strtoupper($this->foreignKey())
                 : $this->foreignKey();
             $body .= ', '.Dumper::export($foreignKey);
         }
 
         if ($this->needsOtherKey()) {
             $otherKey = $this->reference->usesPropertyConstants()
-                ? $this->reference->getQualifiedUserClassName().'::'.strtoupper($this->otherKey())
+                ? $this->reference->getQualifiedUserClassName().'::'.$this->reference->propertyConstantsPrefix().strtoupper($this->otherKey())
                 : $this->otherKey();
             $body .= ', '.Dumper::export($otherKey);
         }
@@ -232,7 +232,7 @@ class BelongsToMany implements Relation
     {
         return (string) implode(', ', array_map(function ($field) {
             $field = $this->reference->usesPropertyConstants()
-                ? $this->pivot->getQualifiedUserClassName().'::'.strtoupper($field)
+                ? $this->pivot->getQualifiedUserClassName().'::'.$this->reference->propertyConstantsPrefix().strtoupper($field)
                 : $field;
 
             return Dumper::export($field);

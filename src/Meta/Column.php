@@ -1,6 +1,6 @@
 <?php
 
-namespace Pursehouse\Modeler\Meta;
+namespace Aeugen\Modeler\Meta;
 
 interface Column
 {

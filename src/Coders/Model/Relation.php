@@ -1,6 +1,6 @@
 <?php
 
-namespace Pursehouse\Modeler\Coders\Model;
+namespace Aeugen\Modeler\Coders\Model;
 
 interface Relation
 {

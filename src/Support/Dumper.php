@@ -1,6 +1,6 @@
 <?php
 
-namespace Pursehouse\Modeler\Support;
+namespace Aeugen\Modeler\Support;
 
 class Dumper
 {

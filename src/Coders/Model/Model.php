@@ -1,24 +1,24 @@
 <?php
 
-namespace Pursehouse\Modeler\Coders\Model;
+namespace Aeugen\Modeler\Coders\Model;
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;
-use Pursehouse\Modeler\Coders\Model\Relations\BelongsTo;
-use Pursehouse\Modeler\Coders\Model\Relations\ReferenceFactory;
-use Pursehouse\Modeler\Meta\Blueprint;
+use Aeugen\Modeler\Coders\Model\Relations\BelongsTo;
+use Aeugen\Modeler\Coders\Model\Relations\ReferenceFactory;
+use Aeugen\Modeler\Meta\Blueprint;
 
 class Model
 {
     /**
-     * @var \Pursehouse\Modeler\Meta\Blueprint
+     * @var \Aeugen\Modeler\Meta\Blueprint
      */
     private $blueprint;
 
     /**
-     * @var \Pursehouse\Modeler\Coders\Model\Factory
+     * @var \Aeugen\Modeler\Coders\Model\Factory
      */
     private $factory;
 
@@ -33,7 +33,7 @@ class Model
     protected $relations = [];
 
     /**
-     * @var \Pursehouse\Modeler\Meta\Blueprint[]
+     * @var \Aeugen\Modeler\Meta\Blueprint[]
      */
     protected $references = [];
 
@@ -53,12 +53,12 @@ class Model
     protected $casts = [];
 
     /**
-     * @var \Pursehouse\Modeler\Coders\Model\Mutator[]
+     * @var \Aeugen\Modeler\Coders\Model\Mutator[]
      */
     protected $mutators = [];
 
     /**
-     * @var \Pursehouse\Modeler\Coders\Model\Mutation[]
+     * @var \Aeugen\Modeler\Coders\Model\Mutation[]
      */
     protected $mutations = [];
 
@@ -160,9 +160,9 @@ class Model
     /**
      * ModelClass constructor.
      *
-     * @param \Pursehouse\Modeler\Meta\Blueprint         $blueprint
-     * @param \Pursehouse\Modeler\Coders\Model\Factory   $factory
-     * @param \Pursehouse\Modeler\Coders\Model\Mutator[] $mutators
+     * @param \Aeugen\Modeler\Meta\Blueprint         $blueprint
+     * @param \Aeugen\Modeler\Coders\Model\Factory   $factory
+     * @param \Aeugen\Modeler\Coders\Model\Mutator[] $mutators
      * @param bool                                       $loadRelations
      */
     public function __construct(Blueprint $blueprint, Factory $factory, $mutators = [], $loadRelations = true)
@@ -247,7 +247,9 @@ class Model
         // TODO: Check type cast is OK
         $cast = $column->type;
 
-        $propertyName = $this->usesPropertyConstants() ? 'self::'.strtoupper($column->name) : $column->name;
+        $propertyName = $this->usesPropertyConstants()
+            ? 'self::'.$this->propertyConstantsPrefix().strtoupper($column->name)
+            : $column->name;
 
         // Due to some casting problems when converting null to a Carbon instance,
         // we are going to treat Soft Deletes field as string.
@@ -319,7 +321,7 @@ class Model
     /**
      * @param \Illuminate\Support\Fluent $relation
      *
-     * @return $this|\Pursehouse\Modeler\Coders\Model\Model
+     * @return $this|\Aeugen\Modeler\Coders\Model\Model
      */
     public function makeRelationModel(Fluent $relation)
     {
@@ -432,7 +434,7 @@ class Model
     }
 
     /**
-     * @param \Pursehouse\Modeler\Meta\Blueprint[] $references
+     * @param \Aeugen\Modeler\Meta\Blueprint[] $references
      */
     public function withReferences($references)
     {
@@ -1043,7 +1045,7 @@ class Model
     }
 
     /**
-     * @return \Pursehouse\Modeler\Coders\Model\Relation[]
+     * @return \Aeugen\Modeler\Coders\Model\Relation[]
      */
     public function getRelations()
     {
@@ -1059,7 +1061,7 @@ class Model
     }
 
     /**
-     * @return \Pursehouse\Modeler\Coders\Model\Mutation[]
+     * @return \Aeugen\Modeler\Coders\Model\Mutation[]
      */
     public function getMutations()
     {
@@ -1155,7 +1157,7 @@ class Model
     }
 
     /**
-     * @return \Pursehouse\Modeler\Meta\Blueprint
+     * @return \Aeugen\Modeler\Meta\Blueprint
      */
     public function getBlueprint()
     {
@@ -1202,6 +1204,14 @@ class Model
     public function usesPropertyConstants()
     {
         return $this->config('with_property_constants', false);
+    }
+
+    /**
+     * @return bool
+     */
+    public function propertyConstantsPrefix()
+    {
+        return $this->config('property_constants_prefix', '');
     }
 
     /**

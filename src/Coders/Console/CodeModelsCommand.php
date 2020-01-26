@@ -1,10 +1,10 @@
 <?php
 
-namespace Pursehouse\Modeler\Coders\Console;
+namespace Aeugen\Modeler\Coders\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Config\Repository;
-use Pursehouse\Modeler\Coders\Model\Factory;
+use Aeugen\Modeler\Coders\Model\Factory;
 
 class CodeModelsCommand extends Command
 {
@@ -13,7 +13,7 @@ class CodeModelsCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'pursehouse:modeler
+    protected $signature = 'aeugen:modeler
                             {--s|schema= : The name of the schema ( database in MySQL terms )}
                             {--c|connection= : The name of the connection}
                             {--t|table= : The name of the table}';
@@ -26,7 +26,7 @@ class CodeModelsCommand extends Command
     protected $description = 'Parse connection schema into models';
 
     /**
-     * @var \Pursehouse\Modeler\Coders\Model\Factory
+     * @var \Aeugen\Modeler\Coders\Model\Factory
      */
     protected $models;
 
@@ -38,7 +38,7 @@ class CodeModelsCommand extends Command
     /**
      * Create a new command instance.
      *
-     * @param \Pursehouse\Modeler\Coders\Model\Factory $models
+     * @param \Aeugen\Modeler\Coders\Model\Factory $models
      * @param \Illuminate\Contracts\Config\Repository  $config
      */
     public function __construct(Factory $models, Repository $config)

@@ -1,13 +1,13 @@
 <?php
 
-namespace Pursehouse\Modeler\Meta\MySql;
+namespace Aeugen\Modeler\Meta\MySql;
 
 use Illuminate\Database\Connection;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Fluent;
-use Pursehouse\Modeler\Meta\Blueprint;
+use Aeugen\Modeler\Meta\Blueprint;
 
-class Schema implements \Pursehouse\Modeler\Meta\Schema
+class Schema implements \Aeugen\Modeler\Meta\Schema
 {
     /**
      * @var string
@@ -25,7 +25,7 @@ class Schema implements \Pursehouse\Modeler\Meta\Schema
     protected $loaded = false;
 
     /**
-     * @var \Pursehouse\Modeler\Meta\Blueprint[]
+     * @var \Aeugen\Modeler\Meta\Blueprint[]
      */
     protected $tables = [];
 
@@ -94,7 +94,7 @@ class Schema implements \Pursehouse\Modeler\Meta\Schema
     }
 
     /**
-     * @param \Pursehouse\Modeler\Meta\Blueprint $blueprint
+     * @param \Aeugen\Modeler\Meta\Blueprint $blueprint
      */
     protected function fillColumns(Blueprint $blueprint)
     {
@@ -117,7 +117,7 @@ class Schema implements \Pursehouse\Modeler\Meta\Schema
     }
 
     /**
-     * @param \Pursehouse\Modeler\Meta\Blueprint $blueprint
+     * @param \Aeugen\Modeler\Meta\Blueprint $blueprint
      */
     protected function fillConstraints(Blueprint $blueprint)
     {
@@ -146,7 +146,7 @@ class Schema implements \Pursehouse\Modeler\Meta\Schema
 
     /**
      * @param string                             $sql
-     * @param \Pursehouse\Modeler\Meta\Blueprint $blueprint
+     * @param \Aeugen\Modeler\Meta\Blueprint $blueprint
      * @todo: Support named primary keys
      */
     protected function fillPrimaryKey($sql, Blueprint $blueprint)
@@ -167,7 +167,7 @@ class Schema implements \Pursehouse\Modeler\Meta\Schema
 
     /**
      * @param string                             $sql
-     * @param \Pursehouse\Modeler\Meta\Blueprint $blueprint
+     * @param \Aeugen\Modeler\Meta\Blueprint $blueprint
      */
     protected function fillIndexes($sql, Blueprint $blueprint)
     {
@@ -188,7 +188,7 @@ class Schema implements \Pursehouse\Modeler\Meta\Schema
 
     /**
      * @param string                             $sql
-     * @param \Pursehouse\Modeler\Meta\Blueprint $blueprint
+     * @param \Aeugen\Modeler\Meta\Blueprint $blueprint
      * @todo: Support named foreign keys
      */
     protected function fillRelations($sql, Blueprint $blueprint)
@@ -239,7 +239,7 @@ class Schema implements \Pursehouse\Modeler\Meta\Schema
 
     /**
      * @param string                             $table
-     * @param \Pursehouse\Modeler\Meta\Blueprint $blueprint
+     * @param \Aeugen\Modeler\Meta\Blueprint $blueprint
      *
      * @return array
      */
@@ -296,7 +296,7 @@ class Schema implements \Pursehouse\Modeler\Meta\Schema
     }
 
     /**
-     * @return \Pursehouse\Modeler\Meta\Blueprint[]
+     * @return \Aeugen\Modeler\Meta\Blueprint[]
      */
     public function tables()
     {
@@ -306,7 +306,7 @@ class Schema implements \Pursehouse\Modeler\Meta\Schema
     /**
      * @param string $table
      *
-     * @return \Pursehouse\Modeler\Meta\Blueprint
+     * @return \Aeugen\Modeler\Meta\Blueprint
      */
     public function table($table)
     {
@@ -326,7 +326,7 @@ class Schema implements \Pursehouse\Modeler\Meta\Schema
     }
 
     /**
-     * @param \Pursehouse\Modeler\Meta\Blueprint $table
+     * @param \Aeugen\Modeler\Meta\Blueprint $table
      *
      * @return array
      */

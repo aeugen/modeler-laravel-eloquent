@@ -1,9 +1,9 @@
 <?php
 
-namespace Pursehouse\Modeler\Coders\Model;
+namespace Aeugen\Modeler\Coders\Model;
 
 use Illuminate\Support\Arr;
-use Pursehouse\Modeler\Meta\Blueprint;
+use Aeugen\Modeler\Meta\Blueprint;
 
 class Config
 {
@@ -23,7 +23,7 @@ class Config
     }
 
     /**
-     * @param \Pursehouse\Modeler\Meta\Blueprint $blueprint
+     * @param \Aeugen\Modeler\Meta\Blueprint $blueprint
      * @param string                             $key
      * @param mixed                              $default
      *

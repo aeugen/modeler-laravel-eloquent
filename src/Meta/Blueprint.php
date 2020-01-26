@@ -1,6 +1,6 @@
 <?php
 
-namespace Pursehouse\Modeler\Meta;
+namespace Aeugen\Modeler\Meta;
 
 use Illuminate\Support\Fluent;
 
@@ -236,7 +236,7 @@ class Blueprint
     }
 
     /**
-     * @param \Pursehouse\Modeler\Meta\Blueprint $table
+     * @param \Aeugen\Modeler\Meta\Blueprint $table
      *
      * @return array
      */

@@ -1,6 +1,6 @@
 <?php
 
-namespace Pursehouse\Modeler\Database\Eloquent;
+namespace Aeugen\Modeler\Database\Eloquent;
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
 use Illuminate\Http\Request;
@@ -37,7 +37,7 @@ class WhoDidIt
      */
     public function updating($event, Eloquent $model)
     {
-        $model->udpated_by = $this->doer();
+        $model->updated_by = $this->doer();
     }
 
     /**

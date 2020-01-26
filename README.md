@@ -1,4 +1,4 @@
-# Pursehouse Modeler for Eloquent/Laravel
+# Aeugen Modeler for Eloquent/Laravel
 
 [![StyleCI](https://styleci.io/repos/71080508/shield?style=flat)](https://styleci.io/repos/71080508)
 [![Build Status](https://travis-ci.org/reliese/laravel.svg?branch=master)](https://travis-ci.org/reliese/laravel)
@@ -12,12 +12,12 @@ Generate model classes for Eloquent in Laravel
 ## How does it work?
 
 This package expects that you are using Laravel 5.1 or above.
-You will need to import the `pursehouse/modeler-laravel-eloquent` package via composer:
+You will need to import the `aeugen/modeler-laravel-eloquent` package via composer:
 
 ```shell
-composer config repositories.pursehouse/modeler-laravel-eloquent vcs https://github.com/pursehouse/modeler-laravel-eloquent
+composer config repositories.aeugen/modeler-laravel-eloquent vcs https://github.com/aeugen/modeler-laravel-eloquent
 
-composer require pursehouse/modeler-laravel-eloquent:dev-master
+composer require aeugen/modeler-laravel-eloquent:dev-master
 ```
 
 ### Configuration
@@ -31,7 +31,7 @@ Add the service provider to your `config/app.php` file within the `providers` ke
      * Package Service Providers...
      */
 
-    Pursehouse\Modeler\Coders\CodersServiceProvider::class,
+    Aeugen\Modeler\Coders\CodersServiceProvider::class,
 ],
 // ...
 ```
@@ -40,9 +40,9 @@ Add the service provider to your `config/app.php` file within the `providers` ke
 If you wish to enable generators only for your local environment, you should install it via composer using the --dev option like this:
 
 ```shell
-composer config repositories.pursehouse/modeler-laravel-eloquent vcs https://github.com/pursehouse/modeler-laravel-eloquent
+composer config repositories.aeugen/modeler-laravel-eloquent vcs https://github.com/aeugen/modeler-laravel-eloquent
 
-composer require pursehouse/modeler-laravel-eloquent:dev-master --dev
+composer require aeugen/modeler-laravel-eloquent:dev-master --dev
 ```
 
 Then you'll need to register the provider in `app/Providers/AppServiceProvider.php` file.
@@ -51,7 +51,7 @@ Then you'll need to register the provider in `app/Providers/AppServiceProvider.p
 public function register()
 {
     if ($this->app->environment() == 'local') {
-        $this->app->register(\Pursehouse\Modeler\Coders\CodersServiceProvider::class);
+        $this->app->register(\Aeugen\Modeler\Coders\CodersServiceProvider::class);
     }
 }
 ```
@@ -63,7 +63,7 @@ public function register()
 Add the `models.php` configuration file to your `config` directory and clear the config cache:
 
 ```shell
-php artisan vendor:publish --tag=pursehouse-modeler
+php artisan vendor:publish --tag=aeugen-modeler
 php artisan config:clear
 ```
 
@@ -74,25 +74,25 @@ Assuming you have already configured your database, you are now all set to go.
 - Let's scaffold some of your models from your default connection.
 
 ```shell
-php artisan pursehouse:modeler
+php artisan aeugen:modeler
 ```
 
 - You can scaffold a specific table like this:
 
 ```shell
-php artisan pursehouse:modeler --table=users
+php artisan aeugen:modeler --table=users
 ```
 
 - You can also specify the connection:
 
 ```shell
-php artisan pursehouse:modeler --connection=mysql
+php artisan aeugen:modeler --connection=mysql
 ```
 
 - If you are using a MySQL database, you can specify which schema you want to scaffold:
 
 ```shell
-php artisan pursehouse:modeler --schema=shop
+php artisan aeugen:modeler --schema=shop
 ```
 
 ### Customizing Model Scaffolding
